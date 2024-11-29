@@ -1,5 +1,5 @@
-import { View, Animated, Easing } from 'react-native';
 import React, { useEffect, useRef } from 'react';
+import { View, Animated, Easing } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Textito from '../../components/Textito';

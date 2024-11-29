@@ -1,6 +1,5 @@
 import { Stack } from 'expo-router'
 import { FontProvider } from '../components/FontContext'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StripeProvider } from '@stripe/stripe-react-native'
 import { useEffect, useState } from 'react'
 import ApiService from '../lib/ApiService.js'
@@ -34,7 +33,6 @@ const RootLayout = () => {
 
   return (
     <StripeProvider publishableKey={publishableKey}>
-      <SafeAreaProvider>
         <FontProvider>
           <FlashMessage position="top" />
           <Stack>
@@ -144,7 +142,6 @@ const RootLayout = () => {
             />
           </Stack>
         </FontProvider>
-      </SafeAreaProvider>
     </StripeProvider>
   )
 }
