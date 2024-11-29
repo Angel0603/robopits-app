@@ -90,7 +90,7 @@ const Home = () => {
 
                 {/* Cards Productos */}
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View className="w-full flex-row">
+                    <View className="w-full flex-row py-2">
                         {products.map(product => (
                             <ProductCard
                                 key={product._id}
@@ -116,7 +116,7 @@ const Home = () => {
                 </View>
 
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} className="mb-5">
-                    <View className="w-full flex-row">
+                    <View className="w-full flex-row py-2">
                         {products.map(product => (
                             <ProductCard
                                 key={product._id}

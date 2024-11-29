@@ -109,7 +109,7 @@ const Favoritos = () => {
       ) : (
         favoritos.map((producto, index) => (
           <StyledPressable key={index} onPress={() => router.push(`producto/${producto._id}`)}>
-            <View className="bg-white p-4 rounded-lg shadow mb-4">
+            <View className="bg-white p-4 rounded-lg mb-4 border border-gray-200 shadow shadow-lg shadow-black">
               {/* Contenedor de imagen con ícono de favoritos */}
               <View className="relative">
                 <Image

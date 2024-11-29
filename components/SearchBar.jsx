@@ -101,7 +101,7 @@ const SearchBar = () => {
                             </View>
                         </View>
 
-                        <View className="bg-white p-4 rounded-lg w-full h-3/4 mx-auto flex-1">
+                        <View className="bg-white p-1 rounded-lg w-full h-3/4 mx-auto flex-1">
                             <Textito className="text-lg font-bold text-[#223263] text-center">Resultados de búsqueda</Textito>
 
                             {loading ? (
@@ -116,15 +116,17 @@ const SearchBar = () => {
                                                     width: '50%', // Ocupa el 48% para dar margen entre tarjetas
                                                 }}
                                             >
-                                                <ProductCard
-                                                    image={item.Imagen}
-                                                    name={item.NameProducto}
-                                                    price={item.Precio.toFixed(2)}
-                                                    onPress={() => {
-                                                        setModalVisible(false); // Cierra el modal al seleccionar
-                                                        router.push(`producto/${item._id}`);
-                                                    }}
-                                                />
+                                                <View className="w-48">
+                                                    <ProductCard
+                                                        image={item.Imagen}
+                                                        name={item.NameProducto}
+                                                        price={item.Precio.toFixed(2)}
+                                                        onPress={() => {
+                                                            setModalVisible(false); // Cierra el modal al seleccionar
+                                                            router.push(`producto/${item._id}`);
+                                                        }}
+                                                    />
+                                                </View>
                                             </StyledPressable>
                                         ))
                                     ) : (

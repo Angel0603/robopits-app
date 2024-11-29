@@ -79,7 +79,7 @@ const Pedidos = () => {
         </View>
       ) : (
         pedidos.map((pedido, index) => (
-          <View key={index} className="bg-white p-4 rounded-lg shadow mb-4">
+          <View key={index} className="bg-white p-4 rounded-lg shadow shadow-lg shadow-black mb-4 border border-gray-200">
             <Textito className="text-lg font-bold mb-2">Productos</Textito>
             {pedido.productos.map((producto, idx) => (
               <View key={idx} className="flex-row mb-2 items-center">
