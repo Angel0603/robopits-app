@@ -26,16 +26,16 @@ const RootLayout = () => {
   if (!publishableKey) {
     return (
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="splash" options={{ headerShown: false }}/>
+        <Stack.Screen name="splash" options={{ headerShown: false }} />
       </Stack>
     ) // Mostrar una pantalla de carga mientras se obtiene la clave
   }
 
   return (
     <StripeProvider publishableKey={publishableKey}>
-        <FontProvider>
-          <FlashMessage position="top" />
-          <Stack>
+      <FontProvider>
+        <FlashMessage position="top" />
+        <Stack >
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="(screens)" options={{ headerShown: false }} />
             <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -67,8 +67,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -84,8 +83,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -101,8 +99,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -118,8 +115,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -135,13 +131,12 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
-          </Stack>
-        </FontProvider>
+        </Stack>
+      </FontProvider>
     </StripeProvider>
   )
 }

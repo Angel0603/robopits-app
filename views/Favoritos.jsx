@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { styled } from 'nativewind';
 import { showMessage } from "react-native-flash-message";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const StyledPressable = styled(Pressable);
 
@@ -84,13 +85,14 @@ const Favoritos = () => {
   };
 
   return (
+    <SafeAreaProvider className="bg-white">
     <ScrollView
-      className="flex-1 p-4 bg-white"
+      className="p-4 bg-white"
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <Textito className="text-2xl font-bold mb-4">Mis Favoritos</Textito>
+      <Textito className="text-2xl mb-4" fontFamily="PoppinsBold">Mis Favoritos</Textito>
 
       {favoritos.length === 0 ? (
         <View className="items-center justify-center mt-10">
@@ -109,7 +111,7 @@ const Favoritos = () => {
       ) : (
         favoritos.map((producto, index) => (
           <StyledPressable key={index} onPress={() => router.push(`producto/${producto._id}`)}>
-            <View className="bg-white p-4 rounded-lg mb-4 border border-gray-200 shadow shadow-lg shadow-black">
+            <View className="bg-white p-4 rounded-lg mb-4 border border-gray-200 shadow-sm">
               {/* Contenedor de imagen con ícono de favoritos */}
               <View className="relative">
                 <Image
@@ -132,11 +134,11 @@ const Favoritos = () => {
                 </StyledPressable>
               </View>
 
-              <Textito className="text-lg font-bold mb-2">{producto.NameProducto}</Textito>
+              <Textito className="text-lg mb-2" fontFamily="PoppinsBold">{producto.NameProducto}</Textito>
               <View className="flex-row items-center">
                 <View className="flex-shrink ml-4">
-                  <Textito className="text-gray-700"><Textito fontFamily="PoppinsBold">Precio:</Textito> ${producto.Precio}</Textito>
-                  <Textito className="text-gray-700"><Textito fontFamily="PoppinsBold">Categoría:</Textito> {producto.Categoria}</Textito>
+                  <Textito className="text-gray-700"><Textito fontFamily="PoppinsBold">Precio:</Textito> ${producto.Precio} </Textito>
+                  <Textito className="text-gray-700"><Textito fontFamily="PoppinsBold">Categoría:</Textito> {producto.Categoria} </Textito>
                 </View>
               </View>
             </View>
@@ -144,6 +146,7 @@ const Favoritos = () => {
         ))
       )}
     </ScrollView>
+    </SafeAreaProvider>
   );
 };
 

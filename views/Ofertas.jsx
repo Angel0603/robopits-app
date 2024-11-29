@@ -65,7 +65,7 @@ const Ofertas = () => {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
         >
-            <Textito className="text-2xl font-bold mb-4">Ofertas Especiales</Textito>
+            <Textito className="text-2xl mb-4" fontFamily="PoppinsBold">Ofertas Especiales</Textito>
 
             {ofertas.length === 0 ? (
                 <View className="items-center justify-center mt-10">
@@ -90,7 +90,7 @@ const Ofertas = () => {
                             <Animated.View
                                 key={oferta._id}
                                 style={{ transform: [{ scale: scaleValue }] }}
-                                className="bg-white border border-gray-200 rounded-lg shadow shadow-lg shadow-black m-2 p-4 w-full max-w-sm"
+                                className="bg-white border border-gray-200 rounded-lg shadow-lg m-2 p-4 w-full max-w-sm"
                             >
                                 <StyledPressable
                                     onPressIn={() => handlePressIn(scaleValue)}

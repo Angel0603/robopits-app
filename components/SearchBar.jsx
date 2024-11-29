@@ -6,6 +6,7 @@ import { styled } from 'nativewind';
 import ProductCard from './ProductCard.jsx';
 import { useRouter } from 'expo-router';
 import Textito from './Textito.jsx';
+import { SafeAreaView} from 'react-native-safe-area-context';
 
 const StyledPressable = styled(Pressable);
 
@@ -79,9 +80,10 @@ const SearchBar = () => {
             {/* Modal para mostrar los resultados */}
             <Modal visible={modalVisible} transparent={true} animationType="slide">
                 <KeyboardAvoidingView behavior="padding" className="flex-1">
-                    <View className="flex-1 bg-white justify-start pt-12 pb-5">
+                    <SafeAreaView className="flex-1 bg-white">
+                    <View className="flex-1 bg-white justify-start pb-5">
                         {/* Mantén la barra de búsqueda fija */}
-                        <View className="w-11/12 mx-auto mt-3">
+                        <View className="w-11/12 mx-auto">
                             <View className="w-full flex-row items-center p-4 border border-[#EBF0FF] rounded-md bg-white">
                                 <SearchIcon className="w-6 h-6" />
                                 <TextInput
@@ -90,17 +92,17 @@ const SearchBar = () => {
                                     placeholder="Buscar un producto en RoboPits"
                                     style={{
                                         flex: 1,
-                                        height: 40,
+                                        height: 30,
                                         marginLeft: 8,
                                         fontFamily: 'Poppins',
                                         fontSize: 14,
                                         color: '#223263',
+                                        paddingVertical: "auto"
                                     }}
                                     placeholderTextColor="#9098B1"
                                 />
                             </View>
                         </View>
-
                         <View className="bg-white p-1 rounded-lg w-full h-3/4 mx-auto flex-1">
                             <Textito className="text-lg font-bold text-[#223263] text-center">Resultados de búsqueda</Textito>
 
@@ -151,6 +153,7 @@ const SearchBar = () => {
                             </StyledPressable>
                         </View>
                     </View>
+                    </SafeAreaView>
                 </KeyboardAvoidingView>
             </Modal>
         </View>

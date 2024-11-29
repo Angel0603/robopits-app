@@ -61,7 +61,7 @@ const Pedidos = () => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <Textito className="text-2xl font-bold mb-4">Mis Pedidos</Textito>
+      <Textito className="text-2xl mb-4" fontFamily="PoppinsBold">Mis Pedidos</Textito>
 
       {pedidos.length === 0 ? (
         <View className="items-center justify-center mt-10">
@@ -79,8 +79,8 @@ const Pedidos = () => {
         </View>
       ) : (
         pedidos.map((pedido, index) => (
-          <View key={index} className="bg-white p-4 rounded-lg shadow shadow-lg shadow-black mb-4 border border-gray-200">
-            <Textito className="text-lg font-bold mb-2">Productos</Textito>
+          <View key={index} className="bg-white p-4 rounded-lg shadow-lg mb-4 border border-gray-200">
+            <Textito className="text-lg mb-2" fontFamily="PoppinsBold">Productos</Textito>
             {pedido.productos.map((producto, idx) => (
               <View key={idx} className="flex-row mb-2 items-center">
                 <Image source={{ uri: producto.image }} className="w-48 h-48" style={{ resizeMode: 'contain' }} />

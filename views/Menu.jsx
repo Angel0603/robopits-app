@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Pressable, Image, ScrollView, RefreshControl } from 'react-native'
 import { styled } from 'nativewind'
-import { AvisosIcon, CartIcon, CategoryIcon, CerrarSesionIcon, GroupIcon, HeartIcon, HomeIcon, PedidosIcon, SearchIcon, TagIcon, TerminosIcon } from '../components/Icons';
+import { AvisosIcon, CartIcon, CategoryIcon, CerrarSesionIcon, GroupIcon, HeartIcon, HomeIcon, PedidosIcon, TagIcon, TerminosIcon } from '../components/Icons';
 import { Link, useRouter } from 'expo-router';
 import { showMessage } from "react-native-flash-message";
 
@@ -21,7 +21,7 @@ const Menu = () => {
   // Función para cerrar la sesión
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('token'); // Elimina el token de sesión
+      await AsyncStorage.removeItem('id'); // Elimina el token de sesión
       showMessage({
         message: "Sesión cerrada",
         description: "Has cerrado la sesión exitosamente.",
@@ -83,158 +83,148 @@ const Menu = () => {
   }, []);
 
   return (
-    <SafeAreaView>
-    <View className="bg-white h-full">
-      <View>
-        <View className="w-full bg-[#2587eb] pt-2 pb-5">
-          <View className="flex-column items-center">
-            <StyledPressable className='active:opacity-50'>
-              <Image source={require('../assets/user-default.png')} className="w-48 h-48 active:opacity-50 rounded-full mb-5" />
-            </StyledPressable>
-            <Textito className="text-white text-2xl" fontFamily="PoppinsBold">{userName || "Invitado"}</Textito>
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="bg-white h-full">
+        <View>
+          <View className="w-full bg-[#2587eb] pt-2 pb-5">
+            <View className="flex-column items-center">
+              <StyledPressable className='active:opacity-50 mt-8'>
+                <Image source={require('../assets/user-default.png')} className="w-48 h-48 active:opacity-50 rounded-full mb-5" />
+              </StyledPressable>
+              <Link asChild href="/login">
+                <Textito className="text-white text-2xl" fontFamily="PoppinsBold">{userName || "Iniciar sesión"}</Textito>
+              </Link>
 
-            <Link asChild href="/perfil">
-              <StyledPressable className='active:opacity-50'>
-                <Textito className="text-white mt-2" fontFamily="Poppins">Ver mi perfil</Textito>
+              <Link asChild href="/perfil">
+                <StyledPressable className='active:opacity-50'>
+                  <Textito className="text-white mt-2" fontFamily="Poppins">{userName ? "Ver mi perfil" : ""}</Textito>
+                </StyledPressable>
+              </Link>
+            </View>
+          </View>
+        </View>
+
+        <ScrollView
+          className="py-2 h-full"
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
+          <View className="bg-white">
+            <Link asChild href="/home">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <HomeIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Inicio
+                </Textito>
               </StyledPressable>
             </Link>
           </View>
-        </View>
+
+          <View className="bg-white">
+            <Link asChild href="/pedidos">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <PedidosIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Mis pedidos
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <Link asChild href="/carrito">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <CartIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Mi carrito
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <Link asChild href="/favoritos">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <HeartIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md font-semibold text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Favoritos
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <Link asChild href="/ofertas">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <TagIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Ofertas
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <Link asChild href="/categorias">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <CategoryIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Categorías
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          {/* Separador */}
+          <View className="w-4/5 mx-auto my-2 border-b border-[#EBF0FF]"></View>
+
+          <View className="bg-white">
+            <Link asChild href="/avisos_de_privacidad">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <AvisosIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Avisos de privacidad
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <Link asChild href="/terminos_y_condiciones">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <TerminosIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  Términos y condiciones
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <Link asChild href="/quienes_somos">
+              <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
+                <GroupIcon color={"#3d3d3d"} />
+                <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                  ¿Quiénes somos?
+                </Textito>
+              </StyledPressable>
+            </Link>
+          </View>
+
+          <View className="bg-white">
+            <StyledPressable
+              onPress={handleLogout} // Asigna la función al evento onPress
+              className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]"
+            >
+              <CerrarSesionIcon color={"#3d3d3d"} />
+              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
+                Cerrar sesión
+              </Textito>
+            </StyledPressable>
+          </View>
+        </ScrollView>
       </View>
-
-      <ScrollView
-        className="my-2"
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-        <View className="bg-white">
-          <Link asChild href="/home">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <HomeIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Inicio
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <SearchIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Buscar
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/pedidos">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <PedidosIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Mis pedidos
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/carrito">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <CartIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Mi carrito
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/favoritos">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <HeartIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md font-semibold text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Favoritos
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/ofertas">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <TagIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Ofertas
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/categorias">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <CategoryIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Categorías
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        {/* Separador */}
-        <View className="w-4/5 mx-auto my-2 border-b border-[#EBF0FF]"></View>
-
-        <View className="bg-white">
-          <Link asChild href="/avisos_de_privacidad">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <AvisosIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Avisos de privacidad
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/terminos_y_condiciones">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <TerminosIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                Términos y condiciones
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <Link asChild href="/quienes_somos">
-            <StyledPressable className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]">
-              <GroupIcon color={"#3d3d3d"} />
-              <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-                ¿Quiénes somos?
-              </Textito>
-            </StyledPressable>
-          </Link>
-        </View>
-
-        <View className="bg-white">
-          <StyledPressable
-            onPress={handleLogout} // Asigna la función al evento onPress
-            className="flex-row items-center w-full h-12 px-5 bg-white active:bg-[#EBF0FF]"
-          >
-            <CerrarSesionIcon color={"#3d3d3d"} />
-            <Textito className="ml-5 text-md text-[#3d3d3d]" fontFamily='PoppinsBold'>
-              Cerrar sesión
-            </Textito>
-          </StyledPressable>
-        </View>
-
-      </ScrollView>
-    </View>
     </SafeAreaView>
   )
 }
