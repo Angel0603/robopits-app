@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "robopits",
+    "slug": "app-robopits",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icono-app.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "robopits",
+    "splash": {
+      "image": "./assets/logo-robopits.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "assets/fonts/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icono-app.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.ivandevshadow.approbopits"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "dbf60e84-743b-4199-8490-28c21ee71dd3"
+      }
+    },
+    "owner": "ivandevshadow"
+  }
+}
