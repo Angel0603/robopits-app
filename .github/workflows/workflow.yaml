@@ -74,3 +74,9 @@ jobs:
           API_URL: "https://api-admin-six.vercel.app/api/guardar-datos"  # Cambia por la URL de tu API
           PROJECT_NAME: "RoboPits"  # Cambia este valor por el nombre de tu proyecto
           
+      - name: Upload source maps to Sentry
+        run: |
+          npx sentry-cli releases files "$RELEASE" upload-sourcemaps ./path/to/sourcemaps --rewrite --org "angel-lara" --project "monitoreo-robopits"
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          RELEASE: "1.0.0"

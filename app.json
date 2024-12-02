@@ -31,7 +31,15 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "monitoreo-robopits",
+          "organization": "angel-lara"
+        }
+      ]
     ],
     "extra": {
       "router": {
