@@ -7,12 +7,11 @@ const RootLayout = () => {
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarStyle: { backgroundColor: 'white', borderTopColor: '#EBF0FF', alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, height: 60 },
+                tabBarStyle: { backgroundColor: 'white', borderTopColor: '#EBF0FF', alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, height: "8%" },
                 tabBarActiveTintColor: '#3ba4f6',
                 tabBarLabelStyle: {
                     fontSize: 14,
-                    fontWeight: 'bold',
-                    fontFamily: 'Poppins'
+                    fontFamily: 'PoppinsBold',
                 },
                 //headerTransparent: true, //para dejar el header transparente
             }}

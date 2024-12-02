@@ -25,7 +25,14 @@ const Carrito = () => {
     const fetchCarrito = async () => {
         try {
             const userId = await AsyncStorage.getItem('id');
-            if (!userId) throw new Error("No se encontró el ID de usuario en AsyncStorage");
+            if (!userId) {
+                showMessage({
+                    message: "No has iniciado sesión",
+                    description: "Inicia sesión para acceder a tu carrito de compras.",
+                    type: "warning",
+                    duration: 5000
+                });
+            };
 
             const response = await ApiService.getInstance().fetchData(`carrito/${userId}`);
             const items = response?.carrito?.items || [];

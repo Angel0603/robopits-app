@@ -4,6 +4,18 @@ import { StripeProvider } from '@stripe/stripe-react-native'
 import { useEffect, useState } from 'react'
 import ApiService from '../lib/ApiService.js'
 import FlashMessage from "react-native-flash-message";
+import * as Sentry from '@sentry/react-native';
+import Constants from 'expo-constants';
+
+const navigationIntegration = Sentry.reactNavigationIntegration(); // Or any other navigation integration
+
+Sentry.init({
+  dsn: 'https://6d2e9609fb84380ba3f892b688de55b8@o4508368886366208.ingest.us.sentry.io/4508396874629120',
+  tracesSampleRate: 1.0,
+  debug: true,
+  release: Constants.expoConfig?.version,  // Usa la versión de tu app
+  integrations: [navigationIntegration],
+});
 
 const RootLayout = () => {
   const [publishableKey, setPublishableKey] = useState('');
@@ -26,16 +38,16 @@ const RootLayout = () => {
   if (!publishableKey) {
     return (
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="splash" options={{ headerShown: false }}/>
+        <Stack.Screen name="splash" options={{ headerShown: false }} />
       </Stack>
     ) // Mostrar una pantalla de carga mientras se obtiene la clave
   }
 
   return (
     <StripeProvider publishableKey={publishableKey}>
-        <FontProvider>
-          <FlashMessage position="top" />
-          <Stack>
+      <FontProvider>
+        <FlashMessage position="top" />
+        <Stack >
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="(screens)" options={{ headerShown: false }} />
             <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -67,8 +79,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -84,8 +95,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -101,8 +111,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -118,8 +127,7 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
@@ -135,16 +143,17 @@ const RootLayout = () => {
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
-                  fontWeight: 'bold',
-                  fontFamily: 'Poppins',
+                  fontFamily: 'PoppinsBold',
                 },
               }}
             />
-          </Stack>
-        </FontProvider>
+        </Stack>
+      </FontProvider>
     </StripeProvider>
   )
 }
 
-export default RootLayout
+export default Sentry.wrap(RootLayout,{
+  touchEventBoundaryProps: { onPress: () => true },
+});
 

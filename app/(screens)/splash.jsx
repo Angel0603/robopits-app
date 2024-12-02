@@ -14,16 +14,16 @@ const SplashScreen = () => {
     useEffect(() => {
         const checkSession = async () => {
             try {
-                const token = await AsyncStorage.getItem('token');
+                const id = await AsyncStorage.getItem('id');
                 
-                // Redirige a "/home" si hay un token, o a "/login" si no
-                if (token) {
+                // Redirige a "/home" si hay un id, o a "/login" si no
+                if (id) {
                     router.replace('/home');
                 } else {
                     router.replace('/login');
                 }
             } catch (error) {
-                console.error('Error checking token:', error);
+                console.error('Error checking id:', error);
                 router.replace('/login'); // Redirige a login en caso de error
             }
         };
